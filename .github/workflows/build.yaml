@@ -1,14 +1,18 @@
 name: build
+on:
+  push:
+    branches: [main]  # Trigger on pushes to the main branch
+
 jobs:
   buildProd:
     name: buildProd
     runs-on: ubuntu-latest
+
     steps:
-      # ...
       - uses: actions/checkout@v3
       - uses: oven-sh/setup-bun@v1
 
-      # run any `bun` or `bunx` command
+      # Run bun commands
       - run: bun install
       - run: bun index.ts
       - run: bun run build
