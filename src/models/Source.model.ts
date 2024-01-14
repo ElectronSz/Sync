@@ -9,7 +9,13 @@ const getSources = async (userId: number) => {
         }
     });
 
-    return sources;
+    const sourceArr: string[] = []
+
+    sources.forEach(source  => {
+        sourceArr.push(source.dir)
+    });
+
+    return sourceArr;
 }
 
 //create source for user
@@ -18,7 +24,7 @@ const createSource = async (source: any) => {
     const userId = source.userId;
     delete source["userId"];
 
-    const createdSource = await db.source.create({
+    const createdSource: Source = await db.source.create({
         data: {
             ...source,
             user: {

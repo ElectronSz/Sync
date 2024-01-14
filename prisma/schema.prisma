@@ -17,6 +17,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   Source    Source[]
+  Target    Target?
 }
 
 model Source {
@@ -24,6 +25,16 @@ model Source {
   dir       String   @unique
   status    Boolean  @default(false)
   userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Target {
+  id        Int      @id @default(autoincrement())
+  dir       String   @unique
+  status    Boolean  @default(false)
+  userId    Int @unique
   user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

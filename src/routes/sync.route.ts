@@ -1,16 +1,18 @@
 import { Router, Request, Response } from 'express';
 import { stopSyncing, syncAndWatchFiles } from '../utils/sync-file';
 import { authMiddleware } from '../middlewares/auth.middleware';
+import { getSources } from '../models/Source.model';
 
 const syncRouter = Router();
 
   //start sync
-  syncRouter.post('/start', authMiddleware, async (req: Request, res: Response) => {
+  syncRouter.post('/start', async (req: Request, res: Response) => {
        
-    const { dirs } = req.body;
+    const { userId } = req.body;
     
+    const dirs = await getSources(Number(userId));
 
-   await syncAndWatchFiles(dirs);
+   await syncAndWatchFiles(dirs, userId);
 
     res.status(200).json({
         message: "Sync successfully started.."
@@ -18,7 +20,7 @@ const syncRouter = Router();
 });
 
 //stop sync
-syncRouter.post('/stop',authMiddleware,  async (req: Request, res: Response) => {
+syncRouter.post('/stop',  async (req: Request, res: Response) => {
    
    await stopSyncing();
 

@@ -2,12 +2,13 @@ import fs from 'fs';
 import path from 'path';
 import { watch } from 'fs';
 import { async } from 'sync-directory';
-
-const targetDir = "/home/aslav3/Documents/Apps/web/sync/target";
-
+import { getTarget } from '../models/Target.model';
 
 // Function to sync each source directory (including subdirectories)
-async function syncDirectory(srcDir: any) {
+async function syncDirectory(srcDir: any, userId: number) {
+
+    //get targetDir
+    const targetDir: string = await getTarget(userId);
 
     const delay = (time = 2000) => new Promise(r => setTimeout(r, time));
     try {
@@ -27,7 +28,7 @@ async function syncDirectory(srcDir: any) {
                 const subdirWatcher = watch(subdir, { recursive: true }, (eventType, filename) => {
                     if (eventType === 'change' || eventType === 'rename') {
                         console.log(`File ${filename} changed or added in ${subdir}. Syncing...`);
-                        syncDirectory(subdir);
+                        syncDirectory(subdir, userId);
                     }
                 });
 

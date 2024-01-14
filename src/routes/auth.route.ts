@@ -3,6 +3,7 @@ import { compare , hash } from "bcryptjs"
 import { sign } from "jsonwebtoken";
 import { createUser, getUser } from '../models/User.model';
 import { User } from '../types/User';
+import { createUserFolder } from '../utils/createBaseFolder';
 
 const authRouter = Router();
 
@@ -45,6 +46,10 @@ authRouter.post('/signUp', async (req: Request, res: Response) => {
         res.status(500).json({status: 'failed', message: 'Error creating a user...'})
     }
 
+    //create target folder
+    const baseFolder: string = process.env.BASE_FOLDER!
+    await createUserFolder(baseFolder, user.email);
+    
     const token: any = {}
 
      token['accessToken'] = sign({ userId: createdUser.id }, process.env.AUTH_SECRET!, { expiresIn: '1h' })
