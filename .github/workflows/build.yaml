@@ -14,5 +14,4 @@ jobs:
 
       # Run bun commands
       - run: bun install
-      - run: bun src/index.ts
       - run: bun run build
