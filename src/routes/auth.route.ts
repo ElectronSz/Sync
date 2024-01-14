@@ -24,7 +24,7 @@ authRouter.post('/signIn', async (req: Request, res: Response) => {
 
     const token: any = {}
 
-    token['accessToken'] = sign({ userId: user!.id }, '061kW5hngY', { expiresIn: '1h' })
+    token['accessToken'] = sign({ userId: user!.id }, process.env.AUTH_SECRET!, { expiresIn: '1h' })
     token['refreshToken'] = await createRefreshToken(user!.id)
     token['expiresIn'] = '1h'
 
@@ -47,7 +47,7 @@ authRouter.post('/signUp', async (req: Request, res: Response) => {
 
     const token: any = {}
 
-     token['accessToken'] = sign({ userId: createdUser.id }, '061kW5hngY', { expiresIn: '1h' })
+     token['accessToken'] = sign({ userId: createdUser.id }, process.env.AUTH_SECRET!, { expiresIn: '1h' })
      token['refreshToken'] = await createRefreshToken(createdUser.id)
      token['expiresIn'] = '1h'
 
@@ -57,7 +57,7 @@ authRouter.post('/signUp', async (req: Request, res: Response) => {
 
 const createRefreshToken = async (userId: any) => {
     try {
-      const refreshToken = await sign({ userId }, '061kW5hngY', {
+      const refreshToken = await sign({ userId }, process.env.AUTH_SECRET!, {
         expiresIn: '2h',
       });
   
