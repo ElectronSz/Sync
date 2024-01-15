@@ -2,6 +2,9 @@
   "name": "sync",
   "module": "index.ts",
   "type": "module",
+  "prisma": {
+    "seed": "bun prisma/seed.ts"
+  },
   "devDependencies": {
     "@types/express": "^4.17.21",
     "bun-types": "latest",

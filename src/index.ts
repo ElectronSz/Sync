@@ -8,6 +8,7 @@ import { syncRouter } from './routes/sync.route';
 import { userRouter } from './routes/users.route';
 import { sourceRouter } from './routes/source.route';
 import  { authRouter } from './routes/auth.route';
+import { metricsRouter } from './routes/metrics.route';
 
 
 const app: Express = express();
@@ -25,6 +26,8 @@ app.use('/api/sync', syncRouter);
 app.use("/api/users", userRouter)
 app.use("/api/dirs", sourceRouter)
 app.use("/api/auth", authRouter)
+
+app.use('/api/metrics', metricsRouter);
 
 // Start the Express server
 app.listen(port, () => {

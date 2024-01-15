@@ -18,6 +18,7 @@ model User {
   updatedAt DateTime @updatedAt
   Source    Source[]
   Target    Target?
+  File      File[]
 }
 
 model Source {
@@ -34,8 +35,28 @@ model Target {
   id        Int      @id @default(autoincrement())
   dir       String   @unique
   status    Boolean  @default(false)
-  userId    Int @unique
+  userId    Int      @unique
   user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model File {
+  id        Int       @id @default(autoincrement())
+  name      String
+  size      Decimal
+  version String
+  status    Boolean   @default(false)
+  userId    Int       @unique
+  user      User      @relation(fields: [userId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  mimeId Int
+}
+
+model Mime {
+  id        Int      @id @default(autoincrement())
+  type      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

@@ -3,12 +3,12 @@ import path from "path"
 import { db } from "../../db/config";
 
 const createUserFolder = async (baseFolder: string, email: string) => {
-  const userFolderPath = path.resolve(path.join(baseFolder))
+  const userFolderPath = path.resolve(path.join(baseFolder,email))
 
   try {
   
-    if (!fs.existsSync(baseFolder)) {
-        fs.mkdirSync(baseFolder+ `/${email}`, {
+    if (!fs.existsSync(userFolderPath)) {
+        fs.mkdirSync(userFolderPath, {
           mode: 0o744
         });
 
