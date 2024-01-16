@@ -9,6 +9,7 @@ import { userRouter } from './routes/users.route';
 import { sourceRouter } from './routes/source.route';
 import  { authRouter } from './routes/auth.route';
 import { metricsRouter } from './routes/metrics.route';
+import { seedDb } from '../prisma/seed';
 
 
 const app: Express = express();
@@ -29,7 +30,13 @@ app.use("/api/auth", authRouter)
 
 app.use('/api/metrics', metricsRouter);
 
+const SEED_DB = false
+
 // Start the Express server
-app.listen(port, () => {
+app.listen(port, async () => {
+
+    //seed the database
+    await seedDb(SEED_DB);
+
     console.log(`Server listening on port ${port}`);
 });

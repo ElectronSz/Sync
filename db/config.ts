@@ -3,7 +3,7 @@ import { User } from "../src/types/User";
 import { hashedPassword } from "../src/utils/hashPassword";
 
 const db = new PrismaClient({
-    log: ['query', 'warn', 'error']
+    log: ['error']
 });
 
 // Add a middleware to Prisma Client ...
