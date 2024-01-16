@@ -5,7 +5,7 @@ import { authMiddleware } from '../middlewares/auth.middleware';
 
 const sourceRouter = Router();
 
-sourceRouter.get('/all/:userId', async (req: Request, res: Response) => {
+sourceRouter.get('/all/:userId', authMiddleware, async (req: Request, res: Response) => {
     
     const userId = req.params.userId
     

@@ -23,7 +23,10 @@ const getUser = async (email: string) => {
 const createUser = async (user: User) =>{
 
     const createdUser = db.user.create({
-        data: user
+        data: user,
+        include: {
+            _count: true
+        }
     })
 
     return createdUser;
