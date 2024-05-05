@@ -1,3 +1,12 @@
 {
-    "nuxt.isNuxtApp": false
+    "nuxt.isNuxtApp": false,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "PostgreSQL",
+            "name": "Synk",
+            "connectString": "postgresql://billit:ebil1@localhost:5432/db2?schema=public"
+        }
+    ]
 }

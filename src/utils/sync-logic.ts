@@ -12,7 +12,7 @@ import { Decimal } from '@prisma/client/runtime/library';
 async function syncDirectory(srcDir: any, userId: number) {
 
     //get targetDir
-    const targetDir: string = await getTarget(userId);
+    const targetDir: any = await getTarget(userId);
 
     const delay = (time = 2000) => new Promise(r => setTimeout(r, time));
     try {

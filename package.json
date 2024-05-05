@@ -2,6 +2,9 @@
   "name": "sync",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "dev": "bun run src/index.ts "
+  },
   "prisma": {
     "seed": "bun prisma/seed.ts"
   },

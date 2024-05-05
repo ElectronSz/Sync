@@ -3,15 +3,13 @@ import { Target } from "../types/Target";
 
 //get all target dir for user
 const getTarget = async (userId: number) => {
-    const target: any = await db.target.findUnique({
+    const target: Target | null = await db.target.findUnique({
         where: {
             userId: userId
         }
     });
 
-    const targetDir: string = target.dir;
-
-    return targetDir;
+    return target;
 }
 
 //create target for user

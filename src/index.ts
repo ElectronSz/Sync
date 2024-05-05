@@ -10,6 +10,7 @@ import { sourceRouter } from './routes/source.route';
 import  { authRouter } from './routes/auth.route';
 import { metricsRouter } from './routes/metrics.route';
 import { seedDb } from '../prisma/seed';
+import { targetRouter } from './routes/target.route';
 
 
 const app: Express = express();
@@ -26,6 +27,7 @@ app.use(compression())
 app.use('/api/sync', syncRouter);
 app.use("/api/users", userRouter)
 app.use("/api/dirs", sourceRouter)
+app.use('/api/target', targetRouter);
 app.use("/api/auth", authRouter)
 
 app.use('/api/metrics', metricsRouter);
