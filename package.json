@@ -17,7 +17,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@prisma/client": "5.8.0",
+    "@prisma/client": "5.14.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/compression": "^1.7.5",
     "@types/jsonwebtoken": "^9.0.5",
